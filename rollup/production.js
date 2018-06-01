@@ -7,11 +7,11 @@ export default {
   input: 'src/index.js',
   output: [
     {
-      file: 'dist/es/uteals.production.js',
+      file: 'dist/es/mostc.production.js',
       format: 'es',
     },
     {
-      file: 'dist/cjs/uteals.production.js',
+      file: 'dist/cjs/mostc.production.js',
       format: 'cjs',
     },
   ],
