@@ -1,0 +1,2 @@
+# mostc
+Curried most methods
