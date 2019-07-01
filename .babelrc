@@ -16,7 +16,6 @@
           }
         ]
       ],
-      "plugins": [ "ramda" ]
     },
 
     "production": {
@@ -35,7 +34,6 @@
           }
         ]
       ],
-      "plugins": [ "ramda" ]
     },
 
     "test": {
@@ -51,7 +49,6 @@
           }
         ]
       ],
-      "plugins": [ "ramda" ]
     }
   }
 }
