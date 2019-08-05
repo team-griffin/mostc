@@ -1,29 +1,42 @@
 {
   "name": "mostc",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "main": "dist/cjs/mostc.js",
   "module": "dist/es/mostc.js",
+  "types": "dist/es/index.d.ts",
   "repository": "git@github.com:team-griffin/mostc.git",
   "author": "Jack Ellis <jack.ellis@godaddy.com>",
   "license": "MIT",
   "scripts": {
     "prepublishOnly": "yarn build",
-    "build": "rollup --config ./rollup/config.js",
+    "build": "rollup --config ./rollup.config.js",
     "postmerge": "yarn",
-    "lint": "yarn lint:js",
-    "lint:js": "eslint -c config/.eslintrc.js 'src/**/*.js'"
+    "lint": "yarn lint:js && yarn lint:ts",
+    "lint:js": "eslint -c ./.eslintrc.js 'src/**/*.ts'",
+    "lint:ts": "tsc"
   },
   "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-object-rest-spread": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/register": "^7.5.5",
+    "@commitlint/cli": "^8.1.0",
+    "@commitlint/config-conventional": "^8.1.0",
+    "@semantic-release/changelog": "^3.0.2",
     "@team-griffin/eslint-config": "^3.0.4",
-    "babel-core": "^6.26.3",
-    "babel-eslint": "^8.2.3",
-    "babel-plugin-external-helpers": "^6.22.0",
-    "babel-preset-env": "^1.7.0",
+    "@types/ramda": "^0.25.0",
     "cross-env": "^5.1.6",
     "eslint": "^4.19.1",
-    "rollup": "^0.59.4",
-    "rollup-plugin-babel": "^3.0.4",
-    "rollup-plugin-local-resolve": "^1.0.7"
+    "eslint-plugin-typescript": "^0.14.0",
+    "most": "^1.7.3",
+    "rollup": "^1.0.0",
+    "rollup-plugin-babel": "^4.0.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-typescript2": "^0.22.1",
+    "semantic-release": "^15.13.19",
+    "ts-node": "^8.3.0",
+    "typescript": "^3.5.3",
+    "typescript-eslint-parser": "^22.0.0"
   },
   "dependencies": {
     "ramda": "^0.x.x"

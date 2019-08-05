@@ -1,9 +1,13 @@
 {
+  "plugins": [
+    ["@babel/plugin-proposal-object-rest-spread", { "useBuiltIns": true }],
+  ],
+
   "env": {
     "development": {
       "presets": [
         [
-          "env",
+          "@babel/preset-env",
           {
             "targets": {
               "browsers": [
@@ -15,13 +19,13 @@
             "useBuiltIns": false,
           }
         ]
-      ],
+      ]
     },
 
     "production": {
       "presets": [
         [
-          "env",
+          "@babel/preset-env",
           {
             "targets": {
               "browsers": [
@@ -39,15 +43,14 @@
     "test": {
       "presets": [
         [
-          "env",
-          {
+          "@babel/preset-env",{
             "targets": {
-              "node": "current"
+              "node": "current",
             },
             "modules": "commonjs",
             "useBuiltIns": false,
-          }
-        ]
+          },
+        ],
       ],
     }
   }

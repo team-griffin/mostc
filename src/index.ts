@@ -1,8 +1,13 @@
 import * as most from 'most';
-import { curryN } from 'ramda';
+import { curryN, CurriedFunction2, CurriedFunction3 } from 'ramda';
 
-const curry2 = curryN(2);
-const curry3 = curryN(3);
+type Curry2 = <A, B, R>(fn: (a: A, b: B, ...rest: any[]) => R) => CurriedFunction2<A, B, R>;
+// eslint-disable-next-line max-len
+type Curry3 = <A, B, C, R>(fn: (a: A, b: B, c: C, ...rest: any[]) => R) => CurriedFunction3<A, B, C, R>
+// @ts-ignore - curryN's type ironically is not curried (but the implementation is)
+const curry2 = curryN(2) as Curry2;
+// @ts-ignore
+const curry3 = curryN(3) as Curry3;
 
 export const map = curry2(most.map);
 export const chain = curry2(most.chain);
@@ -12,6 +17,7 @@ export const startWith = curry2(most.startWith);
 export const concat = curry2(most.concat);
 export const continueWith = curry2(most.continueWith);
 export const concatMap = curry2(most.concatMap);
+// @ts-ignore - transduce is not typed
 export const transduce = curry2(most.transduce);
 export const slice = curry3(most.slice);
 export const take = curry2(most.take);
