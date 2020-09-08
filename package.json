@@ -1,6 +1,6 @@
 {
   "name": "mostc",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "main": "dist/cjs/mostc.js",
   "module": "dist/es/mostc.js",
   "types": "dist/es/index.d.ts",
@@ -37,9 +37,6 @@
     "ts-node": "^8.3.0",
     "typescript": "^3.5.3",
     "typescript-eslint-parser": "^22.0.0"
-  },
-  "dependencies": {
-    "ramda": "^0.x.x"
   },
   "peerDependencies": {
     "most": "^1.7.3"

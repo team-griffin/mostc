@@ -1,37 +1,21 @@
+/* eslint-disable max-len */
 import * as most from 'most';
-import { curryN, CurriedFunction2, CurriedFunction3 } from 'ramda';
 
-type Curry2 = <A, B, R>(fn: (a: A, b: B, ...rest: any[]) => R) => CurriedFunction2<A, B, R>;
-// eslint-disable-next-line max-len
-type Curry3 = <A, B, C, R>(fn: (a: A, b: B, c: C, ...rest: any[]) => R) => CurriedFunction3<A, B, C, R>
-// @ts-ignore - curryN's type ironically is not curried (but the implementation is)
-const curry2 = curryN(2) as Curry2;
-// @ts-ignore
-const curry3 = curryN(3) as Curry3;
-
-export const map = curry2(most.map);
-export const chain = curry2(most.chain);
-export const tap = curry2(most.tap);
-export const filter = curry2(most.filter);
-export const startWith = curry2(most.startWith);
-export const concat = curry2(most.concat);
-export const continueWith = curry2(most.continueWith);
-export const concatMap = curry2(most.concatMap);
-// @ts-ignore - transduce is not typed
-export const transduce = curry2(most.transduce);
-export const slice = curry3(most.slice);
-export const take = curry2(most.take);
-export const skip = curry2(most.skip);
-export const takeWhile = curry2(most.takeWhile);
-export const skipWhile = curry2(most.skipWhile);
-export const skipAfter = curry2(most.skipAfter);
-export const until = curry2(most.until);
-export const since = curry2(most.since);
-export const during = curry2(most.during);
-export const loop = curry3(most.loop);
-export const reduce = curry3(most.reduce);
-export const observe = curry2(most.observe);
-export const delay = curry2(most.delay);
-export const recoverWith = curry2(most.recoverWith);
-export const merge = curry2(most.merge);
-export const combine = curry2(most.combine);
+export const map = <A, B>(f: (a: A) => B) => (s: most.Stream<A>) => most.map(f, s);
+export const chain = <A, B>(f: (a: A) => most.Stream<B>) => (s: most.Stream<A>) => most.chain(f, s);
+export const tap = <A>(f: (a: A) => any) => (s: most.Stream<A>) => most.tap(f, s);
+export const filter = <A>(f: (a: A) => boolean) => (s: most.Stream<A>) => most.filter(f, s);
+export const startWith = <A>(a: A) => (s: most.Stream<A>) => most.startWith(a, s);
+export const concat = <A>(s1: most.Stream<A>) => (s2: most.Stream<A>) => most.concat(s1, s2);
+export const slice = (start: number, end: number) => <A>(s: most.Stream<A>) => most.slice(start, end, s);
+export const take = (n: number) => <A>(s: most.Stream<A>) => most.take(n, s);
+export const skip = (n: number) => <A>(s: most.Stream<A>) => most.skip(n, s);
+export const takeWhile = <A>(p: (a: A) => boolean) => (s: most.Stream<A>) => most.takeWhile(p, s);
+export const skipWhile = <A>(p: (a: A) => boolean) => (s: most.Stream<A>) => most.skipWhile(p, s);
+export const skipAfter = <A>(p: (a: A) => boolean) => (s: most.Stream<A>) => most.skipAfter(p, s);
+export const loop = <A, B, S>(f: (seed: S, a: A) => { seed: S, value: B }, seed: S) => (s: most.Stream<A>) => most.loop(f, seed, s);
+export const reduce = <A, B>(f: (b: B, a: A) => B, b: B) => (s: most.Stream<A>) => most.reduce(f, b, s);
+export const observe = <A>(f: (a: A) => any) => (s: most.Stream<A>) => most.observe(f, s);
+export const delay = (dt: number) => <A>(s: most.Stream<A>) => most.delay(dt, s);
+export const recoverWith = <A, B>(p: (a: B) => most.Stream<A>) => (s: most.Stream<A>) => most.recoverWith(p, s);
+export const merge = <A>(s1: most.Stream<A>) => (s2: most.Stream<A>) => most.merge(s1, s2);
